@@ -4,63 +4,59 @@ import model.Profile;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
-        setInventoryData();
-    }
+//        Profile profile = new Profile();
+//        Inventory inventory = new Inventory();
 
-    private static void setInventoryData() {
-        Profile profile = new Profile();
-        Inventory inventory = new Inventory();
         Scanner input = new Scanner(System.in);
 
-        String inUsername, inName;
+        System.out.print("Masukkan nama anda : ");
+        String username = input.nextLine();
+
+        if (username == null) {
+            System.out.println("You should input your name!");
+        } else {
+            setInventoryData(username);
+        }
+    }
+
+    private static void setInventoryData(String name) {
+        String inName;
         int inTotal;
         double inBuy, inSell;
 
-        System.out.print("Masukkan nama anda : ");
-        inUsername = input.nextLine();
+        System.out.println("\nStok Gudang Input Barang");
+        System.out.println("########################");
+        System.out.println("\nSelamat datang " +name+ "\n");
 
-        if (inUsername == null) {
-            System.out.println("You should input your name!");
+        Scanner inputInventory = new Scanner(System.in);
+
+        System.out.print("Masukkan nama barang yang mau ditambah : ");
+        inName = inputInventory.nextLine();
+
+        System.out.print("Masukkan jumlah barang yang mau ditambah : ");
+        inTotal = inputInventory.nextInt();
+
+        System.out.print("Masukkan harga beli untuk barang tersebut : ");
+        inBuy = inputInventory.nextDouble();
+
+        System.out.print("Masukkan harga jual untuk barang tersebut : ");
+        inSell = inputInventory.nextDouble();
+
+        if (inName == null && inTotal == 0 && inBuy == 0 && inSell == 0) {
+            System.out.println("\nYou should input your inventory data!");
         } else {
-            System.out.println("\nStok Gudang Input Barang");
-            System.out.println("########################");
-            System.out.println("\nSelamat datang " +inUsername+ "\n");
-
-            System.out.print("Masukkan nama barang yang mau ditambah : ");
-            inName = input.nextLine();
-
-            System.out.print("Masukkan jumlah barang yang mau ditambah : ");
-            inTotal = input.nextInt();
-
-            System.out.print("Masukkan harga beli untuk barang tersebut : ");
-            inBuy = input.nextDouble();
-
-            System.out.print("Masukkan harga jual untuk barang tersebut : ");
-            inSell = input.nextDouble();
-
-            inventory.setProductName(inName);
-            inventory.setStock(inTotal);
-            inventory.setBuy(inBuy);
-            inventory.setSell(inSell);
-
-            String name = inventory.getProductName();
-            int stock = inventory.getStock();
-            double buy = inventory.getBuy(), sell = inventory.getSell();
-
-            if (name == null && stock == 0 && buy == 0 && sell == 0) {
-                System.out.println("\nYou should input your inventory data!");
-            } else {
-                System.out.println("\nStok Gudang Rincian Barang");
-                System.out.println("############################");
-
-                System.out.println("Nama Barang     : " +name);
-                System.out.println("Jumlah Barang   : " +stock);
-                System.out.println("Harga Beli      : " +String.format("%.2f", buy));
-                System.out.println("Harga Beli      : " +String.format("%.2f", sell));
-
-            }
+            getResult(inName, inTotal, inBuy, inSell);
         }
+    }
+
+    private static void getResult(String name, int stock, double buy, double sell) {
+        System.out.println("\nStok Gudang Rincian Barang");
+        System.out.println("############################");
+
+        System.out.println("Nama Barang     : " +name);
+        System.out.println("Jumlah Barang   : " +stock);
+        System.out.println("Harga Beli      : " +String.format("%.2f", buy));
+        System.out.println("Harga Beli      : " +String.format("%.2f", sell));
     }
 }
