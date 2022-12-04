@@ -57,7 +57,7 @@ public class Main {
         System.out.print("Masukkan harga jual untuk barang tersebut : ");
         inSell = inputInventory.nextDouble();
 
-        if (inName == null && inTotal == 0 && inBuy == 0 && inSell == 0) {
+        if (inName == null || inTotal == 0 || inBuy == 0 || inSell == 0) {
             // If inventory data is empty
             System.out.println("\nYou should input your inventory data!");
         } else {
